@@ -32,7 +32,7 @@ const useCountUp = (end: number, duration: number = 2000, start: boolean = false
 
   useEffect(() => {
     if (!start) return;
-    
+
     let startTime: number;
     let animationFrame: number;
 

@@ -1,4 +1,4 @@
-import aboutBg from "@/assets/about-bg.jpg";
+import aboutBg from "@/assets/about-bg-update.png";
 
 export const AboutSection = () => {
   return (
@@ -18,12 +18,12 @@ export const AboutSection = () => {
           <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-8">
             ABOUT <span className="text-primary">US</span>
           </h2>
-          
+
           <p className="text-foreground text-lg md:text-xl leading-relaxed mb-8">
             AI for Skill India is a skilling and capability-building initiative designed
             to help institutions deliver outcome-driven, employment-focused education.
           </p>
-          
+
           <p className="text-foreground text-base md:text-lg leading-relaxed mb-8">
             We work with government bodies, engineering colleges, polytechnics, ITIs,
             vocational institutes, and corporate training centers to integrate hands-on
