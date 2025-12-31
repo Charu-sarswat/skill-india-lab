@@ -21,11 +21,18 @@ export const Navbar = () => {
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-heading font-bold text-lg">AI</span>
+              <span className="text-primary-foreground font-heading font-bold text-lg">
+                AI
+              </span>
             </div>
             <div className="hidden sm:block">
-              <span className="font-heading font-bold text-foreground text-lg">AI for Skill</span>
-              <span className="font-heading font-bold text-primary text-lg"> India</span>
+              <span className="font-heading font-bold text-foreground text-lg">
+                AI for Skill
+              </span>
+              <span className="font-heading font-bold text-primary text-lg">
+                {" "}
+                India
+              </span>
             </div>
           </a>
 
@@ -43,12 +50,6 @@ export const Navbar = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-4">
-            <Button variant="outline" size="sm">
-              Partner With Us
-            </Button>
-            <Button size="sm">Build Skill Labs</Button>
-          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -77,7 +78,9 @@ export const Navbar = () => {
                 <Button variant="outline" size="sm" className="w-full">
                   Partner With Us
                 </Button>
-                <Button size="sm" className="w-full">Build Skill Labs</Button>
+                <Button size="sm" className="w-full">
+                  Build Skill Labs
+                </Button>
               </div>
             </div>
           </div>

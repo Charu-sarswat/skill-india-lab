@@ -20,29 +20,30 @@ export const HeroSection = () => {
 
       {/* Content */}
       <div className="container-custom section-padding relative z-10">
-        <div className="max-w-3xl">
-          <h1 className="font-heading font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-6 animate-fade-up">
+        <div className="max-w-3xl md:max-w-4xl lg:max-w-6xl">
+          <h1 className="font-heading font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-6 animate-fade-up text-left">
             From Classrooms to Careers:{" "}
             <span className="text-primary">Building Job-Ready Talent</span> for
             India
           </h1>
           <p
-            className="text-primary text-lg md:text-xl mb-8 leading-relaxed animate-fade-up"
+            className="text-primary text-lg md:text-xl mb-8 leading-relaxed animate-fade-up text-left"
             style={{ animationDelay: "0.2s" }}
           >
-            AI for Skill India partners with governments, universities, polytechnics,
-            ITIs, and training institutions to transform traditional education into
-            hands-on, industry-ready learning ecosystems.
+            AI for Skill India partners with governments, universities,
+            polytechnics, ITIs, and training institutions to transform
+            traditional education into hands-on, industry-ready learning
+            ecosystems.
           </p>
           <p
-            className="text-muted-foreground text-base md:text-lg mb-10 leading-relaxed animate-fade-up"
+            className="text-muted-foreground text-base md:text-lg mb-10 leading-relaxed animate-fade-up text-left"
             style={{ animationDelay: "0.3s" }}
           >
-            We enable institutions to move beyond theory and deliver real skills for
-            real jobs in AI, Drones, EVs, IoT, Robotics, and Clean Energy.
+            We enable institutions to move beyond theory and deliver real skills
+            for real jobs in AI, Drones, EVs, IoT, Robotics, and Clean Energy.
           </p>
           <div
-            className="flex flex-col sm:flex-row gap-4 animate-fade-up"
+            className="flex flex-col sm:flex-row gap-4 animate-fade-up justify-start"
             style={{ animationDelay: "0.4s" }}
           >
             <Button size="lg" className="gap-2 group">

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -40,10 +40,23 @@
     --radius: 0.75rem;
 
     /* Custom design tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(270 60% 40%) 0%, hsl(17 100% 55%) 100%);
-    --gradient-footer: linear-gradient(135deg, hsl(270 60% 35%) 0%, hsl(280 70% 30%) 50%, hsl(17 100% 50%) 100%);
-    --gradient-card-border: linear-gradient(135deg, hsl(45 100% 50%) 0%, hsl(35 100% 45%) 100%);
-    
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(270 60% 40%) 0%,
+      hsl(17 100% 55%) 100%
+    );
+    --gradient-footer: linear-gradient(
+      135deg,
+      hsl(270 60% 35%) 0%,
+      hsl(280 70% 30%) 50%,
+      hsl(17 100% 50%) 100%
+    );
+    --gradient-card-border: linear-gradient(
+      135deg,
+      hsl(45 100% 50%) 0%,
+      hsl(35 100% 45%) 100%
+    );
+
     --shadow-glow: 0 0 40px hsl(17 100% 55% / 0.3);
     --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.4);
 
@@ -75,7 +88,12 @@
     @apply bg-background text-foreground font-body antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading;
   }
 }
@@ -101,13 +119,19 @@
   }
 
   .card-border-gold::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     padding: 1px;
     border-radius: inherit;
-    background: linear-gradient(135deg, hsl(45 100% 50% / 0.5), hsl(45 100% 50% / 0.1), hsl(45 100% 50% / 0.3));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    background: linear-gradient(
+      135deg,
+      hsl(45 100% 50% / 0.5),
+      hsl(45 100% 50% / 0.1),
+      hsl(45 100% 50% / 0.3)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
@@ -177,7 +201,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -187,6 +212,19 @@
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scrollLeft 30s linear infinite;
 }
 
 /* Counter animation helper */
