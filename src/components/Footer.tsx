@@ -23,11 +23,7 @@ export const Footer = () => {
   return (
     <footer
       id="contact"
-      className="relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg, hsl(270 60% 30%) 0%, hsl(280 70% 25%) 50%, hsl(17 80% 40%) 100%)",
-      }}
+      className="relative overflow-hidden bg-black"
     >
       <div className="container-custom section-padding">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
