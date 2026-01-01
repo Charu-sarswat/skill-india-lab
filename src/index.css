@@ -222,7 +222,7 @@
 }
 
 .animate-scroll-left {
-  animation: scrollLeft 8s linear infinite;
+  animation: scrollLeft 25s linear infinite;
 }
 
 /* Counter animation helper */

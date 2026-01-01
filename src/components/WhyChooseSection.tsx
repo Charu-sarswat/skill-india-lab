@@ -57,11 +57,11 @@ export const WhyChooseSection = () => {
         </div>
 
         <div className="overflow-hidden">
-          <div className="flex gap-6 animate-scroll-left">
+          <div className="flex w-max animate-scroll-left">
             {[...features, ...features].map((feature, index) => (
               <div
                 key={`${feature.title}-${index}`}
-                className="card-border-gold p-6 hover-lift flex-shrink-0 w-full sm:w-96"
+                className="card-border-gold p-6 hover-lift flex-shrink-0 w-[90vw] sm:w-96 mr-6"
               >
                 <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mb-4">
                   <feature.icon className="w-6 h-6 text-gold" />

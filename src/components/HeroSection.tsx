@@ -92,10 +92,10 @@ const HeroCarousel = () => {
         <div
           key={slide.id}
           className={`absolute inset-0 transition-transform duration-1000 ease-in-out ${index === currentSlide
-              ? "translate-x-0"
-              : index < currentSlide
-                ? "-translate-x-full"
-                : "translate-x-full"
+            ? "translate-x-0"
+            : index < currentSlide
+              ? "-translate-x-full"
+              : "translate-x-full"
             }`}
           style={{
             backgroundImage: `url(${isMobile ? slide.image.mobile : slide.image.desktop
@@ -125,14 +125,14 @@ const HeroCarousel = () => {
                 >
                   Partner With Us
                 </Button>
-                {/* <Button
+                <Button
                   size="sm"
                   variant="outline"
                   className="border-white text-white hover:text-[#C6930A] hover:bg-white text-xs sm:text-sm w-32 sm:w-auto px-4 sm:px-6"
                   onClick={() => navigate("/register")}
                 >
-                  GET STARTED
-                </Button> */}
+                  Build Skill Labs
+                </Button>
               </div>
             </div>
           </div>
