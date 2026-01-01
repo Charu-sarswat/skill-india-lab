@@ -160,9 +160,11 @@ export const Footer = () => {
       </div>
 
       {/* Back to top button */}
-      <a
-        href="#home"
-        className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors shadow-lg z-50"
+      {/* Back to top button */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors shadow-lg z-50 cursor-pointer"
+        aria-label="Scroll to top"
       >
         <svg
           className="w-5 h-5 text-primary-foreground"
@@ -177,7 +179,7 @@ export const Footer = () => {
             d="M5 10l7-7m0 0l7 7m-7-7v18"
           />
         </svg>
-      </a>
+      </button>
     </footer>
   );
 };
