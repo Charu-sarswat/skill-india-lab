@@ -1,138 +1,177 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-robot.jpg";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-type Slide = {
-  id: number;
-  title: string;
-  subtitle?: string;
-  description?: string;
-  image: string;
-};
+const slides = [
+  {
+    id: 1,
+    tagline: "FROM CLASSROOMS TO CAREERS",
+    title: "BUILDING JOB-READY TALENT FOR INDIA",
+    description:
+      "AI for Skill India partners with governments, universities, polytechnics, ITIs, and training institutions to transform traditional education into hands-on, industry-ready learning ecosystems.",
+    image: {
+      mobile: "/hero-robotd.jpg",
+      desktop: "/hero-robot.jpg",
+    },
 
-export const HeroSection = ({ intervalMs = 3000 }: { intervalMs?: number }) => {
-  const slides: Slide[] = useMemo(
-    () => [
-      {
-        id: 1,
-        title: "From Classrooms to Careers: Building Job-Ready Talent",
-        subtitle: "AI for Skill India",
-        description:
-          "We partner with governments, universities, polytechnics, ITIs, and training institutions to transform education into hands-on, industry-ready learning.",
-        image: heroImage,
-      },
-      {
-        id: 2,
-        title: "Hands-On Learning for Real Jobs",
-        subtitle: "Industry-Aligned Curriculum",
-        description:
-          "Delivering skills for AI, Drones, EVs, IoT, Robotics, and Clean Energy through practical labs and projects.",
-        image: heroImage,
-      },
-      {
-        id: 3,
-        title: "Scale Skill Labs Nationwide",
-        subtitle: "Partner With Us",
-        description:
-          "Enable institutions to move beyond theory—build labs, train faculty, and certify job-ready graduates.",
-        image: heroImage,
-      },
-    ],
-    []
-  );
+    ctaPrimary: "Partner With Us",
+    ctaSecondary: "Build Skill Labs",
+  },
+  {
+    id: 2,
+    tagline: "LEARNING THAT CREATES REAL IMPACT",
+    title: "BEYOND THEORY. TOWARDS REAL CAREERS.",
+    description:
+      "We help institutions move beyond textbook learning and deliver practical, job-oriented skills aligned with real industry needs.",
+    image: {
+      mobile: "/pic3d.jpg",
+      desktop: "/pic3.jpg",
+    },
+  },
+  {
+    id: 3,
+    tagline: "SKILLS FOR THE FUTURE",
+    title: "POWERING INDIA’S NEXT-GEN WORKFORCE",
+    description:
+      "Our programs focus on high-impact domains like AI, Drones, EVs, IoT, Robotics, and Clean Energy—preparing learners for the jobs of tomorrow.",
+    image: {
+      mobile: "/pic2.jpg",
+      desktop: "/pic2.jpg",
+    },
+  },
+];
 
-  const [index, setIndex] = useState(0);
-  const timerRef = useRef<number | null>(null);
+const HeroCarousel = () => {
+  const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // clear existing
-    if (timerRef.current) window.clearInterval(timerRef.current);
-    timerRef.current = window.setInterval(() => {
-      setIndex((i) => (i + 1) % slides.length);
-    }, intervalMs);
+    if (!isAutoPlay) return;
 
-    return () => {
-      if (timerRef.current) window.clearInterval(timerRef.current);
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isAutoPlay]);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      console.log("Screen size check:", {
+        width: window.innerWidth,
+        isMobile: mobile,
+      });
     };
-  }, [intervalMs, slides.length]);
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setIsAutoPlay(false);
+    setTimeout(() => setIsAutoPlay(true), 10000);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setIsAutoPlay(false);
+    setTimeout(() => setIsAutoPlay(true), 10000);
+  };
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
-    >
-      {/* Background carousel */}
-      <div className="absolute inset-0 z-0">
-        <div className="w-full h-full relative">
-          {slides.map((s, i) => (
-            <img
-              key={s.id}
-              src={s.image}
-              alt={s.title}
-              className={`w-full h-full object-cover object-center md:object-right absolute inset-0 transition-opacity duration-700 ease-in-out " ${i === index ? "opacity-100 z-0" : "opacity-0 z-[-1]"
-                }`}
-            />
-          ))}
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="container-custom section-padding relative z-10">
-        <div className="max-w-3xl md:max-w-4xl lg:max-w-6xl">
-          <h1 className="font-heading font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-6 animate-fade-up text-left">
-            {slides[index].title.split(":")[0]}:{" "}
-            <span className="text-primary">
-              {slides[index].title.split(":")[1] || ""}
-            </span>
-          </h1>
-          <p
-            className="text-primary text-lg md:text-xl mb-8 leading-relaxed animate-fade-up text-left"
-            style={{ animationDelay: "0.2s" }}
-          >
-            {slides[index].description}
-          </p>
-          <p
-            className="text-muted-foreground text-base md:text-lg mb-10 leading-relaxed animate-fade-up text-left"
-            style={{ animationDelay: "0.3s" }}
-          >
-            {slides[index].subtitle}
-          </p>
-          <div
-            className="flex flex-col sm:flex-row gap-4 animate-fade-up justify-start"
-            style={{ animationDelay: "0.4s" }}
-          >
-            <Button size="lg" className="gap-2 group">
-              Partner With Us
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button size="lg" variant="outline">
-              Build Skill Labs
-            </Button>
-          </div>
-
-          {/* Dots */}
-          <div className="flex gap-2 mt-8">
-            {slides.map((s, i) => (
-              <button
-                key={s.id}
-                aria-label={`Go to slide ${i + 1}`}
-                onClick={() => setIndex(i)}
-                className={`w-3 h-3 rounded-full transition-all duration-200 ${i === index ? "bg-primary" : "bg-muted-foreground/40"
-                  }`}
-              />
-            ))}
+    <div className="relative w-full h-screen overflow-hidden">
+      {slides.map((slide, index) => (
+        <div
+          key={slide.id}
+          className={`absolute inset-0 transition-transform duration-1000 ease-in-out ${index === currentSlide
+              ? "translate-x-0"
+              : index < currentSlide
+                ? "-translate-x-full"
+                : "translate-x-full"
+            }`}
+          style={{
+            backgroundImage: `url(${isMobile ? slide.image.mobile : slide.image.desktop
+              })`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="container mx-auto px-4 h-full flex items-center">
+            <div className="text-white max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl slide-in-left">
+              <p className="text-[#C6930A] text-sm sm:text-base md:text-lg font-medium mb-2 sm:mb-4">
+                {slide.tagline}
+              </p>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight text-orange-500">
+                {slide.title}
+              </h1>
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-6 md:mb-8 leading-relaxed opacity-90">
+                {slide.description}
+              </p>
+              <div className="flex flex-row gap-3 sm:gap-4">
+                <Button
+                  size="sm"
+                  className="bg-[#C6930A] hover:bg-[#C6930A] text-white text-xs sm:text-sm w-32 sm:w-auto px-4 sm:px-6"
+                  onClick={() =>
+                    window.open("/", "_blank", "noopener,noreferrer")
+                  }
+                >
+                  Partner With Us
+                </Button>
+                {/* <Button
+                  size="sm"
+                  variant="outline"
+                  className="border-white text-white hover:text-[#C6930A] hover:bg-white text-xs sm:text-sm w-32 sm:w-auto px-4 sm:px-6"
+                  onClick={() => navigate("/register")}
+                >
+                  GET STARTED
+                </Button> */}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      ))}
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground flex items-start justify-center p-2">
-          <div className="w-1 h-2 bg-muted-foreground rounded-full" />
-        </div>
+      {/* Navigation Arrows */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-full transition-all duration-300 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12"
+      >
+        <ChevronLeft size={24} className="sm:w-6 sm:h-6" />
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-full transition-all duration-300 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12"
+      >
+        <ChevronRight size={24} className="sm:w-6 sm:h-6" />
+      </button>
+
+      {/* Dots Indicator */}
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-3">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              setCurrentSlide(index);
+              setIsAutoPlay(false);
+              setTimeout(() => setIsAutoPlay(true), 10000);
+            }}
+            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 carousel-dot ${index === currentSlide ? "bg-[#C6930A] scale-125" : "bg-white/50"
+              }`}
+          />
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
+
+export const HeroSection = HeroCarousel;
+
+export default HeroCarousel;
